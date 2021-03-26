@@ -87,10 +87,8 @@ int main(int argc, char const *argv[]){
     
 
     
-    //char reply1[2000];
-    //memset(reply1, 'a', 2000);
+
     char* tr_reply = calloc(2000, sizeof(char));
-    char reply2[2000];
 
     send(sockfd, tr_msg, strlen(tr_msg), 0);
     sleep(1);
@@ -111,6 +109,12 @@ int main(int argc, char const *argv[]){
     //printf("%s-%i\n", fl_ip, fl_port);
     //printf("%li\n", strlen(fl_ip));
 
+    if (strcmp(serv_file, "*") == 0){
+        printf("ALL\n");
+    }
+
+
+
 
     int fl_sockfd; 
     struct sockaddr_in fl_servaddr; 
@@ -129,7 +133,7 @@ int main(int argc, char const *argv[]){
     // assign IP, PORT 
     fl_servaddr.sin_family = AF_INET; 
     fl_servaddr.sin_addr.s_addr = inet_addr(fl_ip); 
-    fl_servaddr.sin_port = htons(fl_port); 
+    fl_servaddr.sin_port = htons(fl_port);
   
     // connect the client socket to server socket 
     if (connect(fl_sockfd, (struct sockaddr *)&fl_servaddr, sizeof(fl_servaddr)) != 0){ 
@@ -163,7 +167,7 @@ int main(int argc, char const *argv[]){
         length = (length*10) + (g-48);
         g = fgetc(sockfile);
     }
-    //printf("LENGTH=%i\n", length);
+    printf("LENGTH=%i\n", length);
     g = fgetc(sockfile);
     g = fgetc(sockfile);
     g = fgetc(sockfile);
